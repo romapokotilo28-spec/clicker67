@@ -18,6 +18,9 @@ python3 -m http.server 8080 --directory extracted
 
 Then open `http://localhost:8080/index.html`.
 
+### Yandex leaderboard
+- The in-game leaderboard (Лидеры tab) uses the Yandex SDK leaderboard whose **technical name is `score`** (see `LEADERBOARD_NAME` in `js/sdk-bridge.js`). A leaderboard with that exact technical name must exist in the Yandex Games developer console, otherwise it stays empty. Off-platform (local dev) the tab shows an "available on Yandex Games" message instead.
+
 ### Non-obvious caveats
 - `index.html` loads `/sdk.js` (the Yandex Games SDK). That file only exists on the Yandex platform, so locally it returns **404 — this is expected**. The code (`js/sdk-bridge.js`) detects the missing SDK and runs in "local mode", persisting progress to `localStorage` instead of the cloud.
 - UI language auto-detects from the browser/SDK locale (`js/i18n.js`); it shows Russian by default but renders English when the browser locale is English. Both are correct behavior.
